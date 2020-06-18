@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Button, Image } from "react-native";
-import Screen from "./app/components/Screen";
-import ImageInputList from "./app/components/ImageInputList";
-import ListingEditScreen from "./app/screens/ListingEditScreen";
+import { StyleSheet, Button, Image, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+
+import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
 
 export default function App() {
-  return <ListingEditScreen />;
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator />
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
