@@ -19,27 +19,29 @@ export default function ListingsScreen({ navigation }) {
   }, []);
 
   return (
-    <Screen style={styles.container}>
-      {getListingsApi.error && (
-        <>
-          <AppText>Unable to retrieve data.</AppText>
-          <AppButton title="Retry" onPress={loadListings} />
-        </>
-      )}
+    <>
       <ActivityIndicator visible={getListingsApi.loading} />
-      <FlatList
-        data={getListingsApi.data}
-        keyExtractor={(listing) => listing.id.toString()}
-        renderItem={({ item }) => (
-          <Card
-            title={item.title}
-            subTitle={"$" + item.price}
-            imageUrl={item.images[0].url}
-            onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-          />
+      <Screen style={styles.container}>
+        {getListingsApi.error && (
+          <>
+            <AppText>Unable to retrieve data.</AppText>
+            <AppButton title="Retry" onPress={loadListings} />
+          </>
         )}
-      />
-    </Screen>
+        <FlatList
+          data={getListingsApi.data}
+          keyExtractor={(listing) => listing.id.toString()}
+          renderItem={({ item }) => (
+            <Card
+              title={item.title}
+              subTitle={"$" + item.price}
+              imageUrl={item.images[0].url}
+              onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+            />
+          )}
+        />
+      </Screen>
+    </>
   );
 }
 
